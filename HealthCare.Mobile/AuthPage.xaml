@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
+             mc:Ignorable="d"
+             x:Class="HealthCare.Mobile.AuthPage"
+             Padding="15">
+    <ContentPage.Content>
+        <StackLayout x:Name="StkMain" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+            <Image Source="userauth.png" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Start"></Image>
+            <Frame HasShadow="True" BorderColor="Orange" CornerRadius="20" BackgroundColor="Transparent">
+                <StackLayout x:Name="StkAuthOption">
+                    <Entry x:Name="txtEmailID" Placeholder="Email Address" PlaceholderColor="LightGray" Keyboard="Email"></Entry>
+                    <Button x:Name="btnAuthOption" Clicked="btnAuthOption_Clicked" BorderWidth="0" BackgroundColor="Transparent" Text="Login Using Phone" HorizontalOptions="End"></Button>
+                </StackLayout>
+            </Frame>
+
+            <Frame HasShadow="True" BorderColor="Orange" BackgroundColor="Transparent" CornerRadius="20">
+                <StackLayout x:Name="StkPwdOTP" Orientation="Horizontal" BackgroundColor="Transparent">
+                    <Entry x:Name="txtEmailPwd" IsPassword="True" Placeholder="Password" PlaceholderColor="LightGray" HorizontalOptions="FillAndExpand"></Entry>
+                    <ImageButton x:Name="btnShowHidePwd" Clicked="btnShowHidePwd_Clicked" Source="showpassword.png" Aspect="Fill" HorizontalOptions="End" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"></ImageButton>
+                    <Entry x:Name="txtOTP" IsVisible="false" IsPassword="False" Keyboard="Numeric" Placeholder="OTP" PlaceholderColor="LightGray" HorizontalOptions="FillAndExpand"></Entry>
+                </StackLayout>
+            </Frame>
+            <!--<ImageButton Source="Login_Black.png" Aspect="Fill" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"></ImageButton>-->
+            <Button Text="Login" HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackgroundColor="#ff8533" CornerRadius="40"></Button>
+            <Button Text="Forgot your Password?" FontSize="Caption" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Transparent"></Button>
+
+            <Button Text="Not Registered with us?" FontSize="Caption"  HorizontalOptions="Center" VerticalOptions="EndAndExpand" BackgroundColor="Transparent"></Button>
+            <Button Text="Register" HorizontalOptions="FillAndExpand" CornerRadius="40" VerticalOptions="End" BackgroundColor="#ff8533">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

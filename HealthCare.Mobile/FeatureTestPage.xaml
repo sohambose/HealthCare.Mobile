@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:HealthCare.Mobile.MarkupExtensions;assembly=HealthCare.Mobile"
+             mc:Ignorable="d"
+             x:Class="HealthCare.Mobile.FeatureTestPage"             
+             BackgroundColor="Black">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+
+            <!--<ActivityIndicator Color="Orange" IsRunning="{Binding Source={x:Reference img1}, Path=IsLoading}"  AbsoluteLayout.LayoutBounds="0.5,0.5,50,50" AbsoluteLayout.LayoutFlags="PositionProportional"></ActivityIndicator>
+            <Image Source="{local:EmbeddedImage HealthCare.Mobile.Images.SampleBackground.jpg}" 
+                   x:Name="img1" Aspect="AspectFill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>-->
+
+
+            <!--<Button ImageSource="HealthBagIcon.png" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"></Button>-->
+
+            <SearchBar Placeholder="Search Members....." FontAttributes="Italic" TextColor="Gray" TextChanged="SearchBar_TextChanged">
+
+            </SearchBar>
+            <ListView x:Name="lstMembers" SeparatorColor="DarkOrange" RefreshControlColor="White" BackgroundColor="White" HasUnevenRows="True"
+                      ItemSelected="lstMembers_ItemSelected" ItemTapped="lstMembers_ItemTapped" IsPullToRefreshEnabled="True" Refreshing="lstMembers_Refreshing">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<ImageCell Text="{Binding Name}" Detail="{Binding Status}" ImageSource="{Binding ImageURL}"></ImageCell>-->
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <Image Source="{Binding ImageURL}"></Image>
+                                <StackLayout HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding Name}"></Label>
+                                    <Label Text="{Binding Status}" TextColor="Gray"></Label>
+                                </StackLayout>
+                                <Button Text="Follow"></Button>
+                            </StackLayout>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Inactive" IsDestructive="False" Clicked="InactiveItem_Clicked" CommandParameter="{Binding .}"></MenuItem>
+                                <MenuItem Text="Delete" IsDestructive="True" Clicked="DeleteItem_Clicked" CommandParameter="{Binding .}"></MenuItem>
+                            </ViewCell.ContextActions>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
