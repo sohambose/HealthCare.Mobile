@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCare.Mobile.Android", "HealthCare.Mobile.Android\HealthCare.Mobile.Android.csproj", "{6A031E64-A658-4692-998A-BDB03AE40B8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCare.Mobile", "HealthCare.Mobile\HealthCare.Mobile.csproj", "{A043459E-08CC-4E7D-8765-3E4981BCE892}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthCare.Mobile", "HealthCare.Mobile\HealthCare.Mobile.csproj", "{A043459E-08CC-4E7D-8765-3E4981BCE892}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCare.Mobile.ServiceLayer", "HealthCare.Mobile.ServiceLayer\HealthCare.Mobile.ServiceLayer.csproj", "{A4E4FCBE-6FEB-4F20-B479-9C8F4BC8D269}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{A043459E-08CC-4E7D-8765-3E4981BCE892}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A043459E-08CC-4E7D-8765-3E4981BCE892}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A043459E-08CC-4E7D-8765-3E4981BCE892}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A4E4FCBE-6FEB-4F20-B479-9C8F4BC8D269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4E4FCBE-6FEB-4F20-B479-9C8F4BC8D269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4E4FCBE-6FEB-4F20-B479-9C8F4BC8D269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4E4FCBE-6FEB-4F20-B479-9C8F4BC8D269}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

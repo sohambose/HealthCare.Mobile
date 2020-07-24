@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
+             mc:Ignorable="d"
+             x:Class="HealthCare.Mobile.AuthPage"
+             Padding="15">
+    <ContentPage.Content>
+        <StackLayout x:Name="StkMain" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+            <Label Text="Sign In" TextColor="Black" FontSize="Large" HorizontalOptions="CenterAndExpand"></Label>
+
+            <StackLayout x:Name="StkAuthOption" Padding="10">
+                <Entry x:Name="txtEmailID" Placeholder="Email Address" PlaceholderColor="Gray" Keyboard="Email" ClearButtonVisibility="Never"></Entry>
+                <Button x:Name="btnAuthOption" Clicked="btnAuthOption_Clicked" BorderWidth="0" BackgroundColor="Transparent" Text="Login Using Phone" HorizontalOptions="End"></Button>
+            </StackLayout>
+            <StackLayout x:Name="StkPwdOTP" Orientation="Horizontal" BackgroundColor="Transparent" Padding="10">
+                <Entry x:Name="txtEmailPwd" IsPassword="True" Placeholder="Password" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand" ClearButtonVisibility="Never"></Entry>
+                <ImageButton x:Name="btnShowHidePwd" Clicked="btnShowHidePwd_Clicked" Source="showpassword.png" Aspect="Fill" HorizontalOptions="End" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"></ImageButton>
+                <Entry x:Name="txtOTP" IsVisible="false" IsPassword="False" Keyboard="Numeric" Placeholder="OTP" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"></Entry>
+            </StackLayout>
+
+
+            <ActivityIndicator x:Name="spnrlogin" IsVisible="False" AbsoluteLayout.LayoutBounds="0.5,0.5,50,50" AbsoluteLayout.LayoutFlags="PositionProportional"></ActivityIndicator>
+            <Button Text="Login" Clicked="btnLogin_Clicked" HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackgroundColor="#ff8533" CornerRadius="40"></Button>
+            <Button Text="Forgot your Password?" FontSize="Caption" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Transparent"></Button>
+
+            <Button Text="Not Registered with us?" FontSize="Caption"  HorizontalOptions="Center" VerticalOptions="EndAndExpand" BackgroundColor="Transparent"></Button>
+            <Button Text="Register" Clicked="btnRegister_Click" HorizontalOptions="FillAndExpand" CornerRadius="40" VerticalOptions="End" BackgroundColor="#ff8533">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

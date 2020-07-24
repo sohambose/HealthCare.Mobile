@@ -10,7 +10,7 @@ namespace HealthCare.Mobile
         {
             InitializeComponent();
 
-            MainPage = new AuthPage();
+            MainPage = new NavigationPage(new AuthPage());
         }
 
         protected override void OnStart()
