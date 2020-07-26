@@ -7,9 +7,8 @@
              x:Class="HealthCare.Mobile.Views.Home">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome!!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Welcome!!" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" />
+            <Button x:Name="btnDocumentPage" Text="Upload Documents" Clicked="btnDocumentPage_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

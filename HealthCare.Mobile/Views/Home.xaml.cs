@@ -16,5 +16,10 @@ namespace HealthCare.Mobile.Views
         {
             InitializeComponent();
         }
+
+        private async void btnDocumentPage_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CaptureDocument());
+        }
     }
 }

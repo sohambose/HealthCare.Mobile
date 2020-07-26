@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HealthCare.Mobile.Views.CaptureDocument">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="20" BackgroundColor="Transparent">
+            <Image x:Name="imgCaptured" HeightRequest="300" WidthRequest="300"></Image>
+            <AbsoluteLayout VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" Padding="15" BackgroundColor="Transparent">
+                <ImageButton x:Name="btnOpenGallery" VerticalOptions="EndAndExpand" AbsoluteLayout.LayoutBounds="1,0.5,50,50" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent" Source="open_gallery.png" Clicked="btnOpenGallery_Clicked"></ImageButton>
+            </AbsoluteLayout>
+            <AbsoluteLayout VerticalOptions="End" HorizontalOptions="EndAndExpand" Padding="15" BackgroundColor="Transparent">               
+                <ImageButton x:Name="btnOpenCamera" VerticalOptions="EndAndExpand" AbsoluteLayout.LayoutBounds="1,0,50,50" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent" Source="camera.png" Clicked="btnOpenCamera_Clicked"></ImageButton>
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
