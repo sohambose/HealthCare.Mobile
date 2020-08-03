@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 
 using Plugin.Media;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace HealthCare.Mobile.Droid
 {
@@ -21,12 +22,13 @@ namespace HealthCare.Mobile.Droid
 
             base.OnCreate(savedInstanceState);
 
-            //---------For Camera-------------------
-            //CrossMedia.Current.Initialize();
-            //--------------------------------------
-
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            //--------Third Party DLL Initialization---------------
+            CrossMedia.Current.Initialize();
+            ImageCircleRenderer.Init();
+            //-----------------------------------------------------
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

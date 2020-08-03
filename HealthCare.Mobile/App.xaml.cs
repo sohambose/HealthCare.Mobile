@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using HealthCare.Mobile.Views;
 
 namespace HealthCare.Mobile
 {
@@ -10,7 +11,7 @@ namespace HealthCare.Mobile
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new AuthPage());
+            MainPage = new NavigationPage(new Home());
         }
 
         protected override void OnStart()

@@ -3,17 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
              x:Class="HealthCare.Mobile.Views.CaptureDocument">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Padding="20" BackgroundColor="Transparent">
-            <Image x:Name="imgCaptured" HeightRequest="300" WidthRequest="300"></Image>
-            <AbsoluteLayout VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" Padding="15" BackgroundColor="Transparent">
-                <ImageButton x:Name="btnOpenGallery" VerticalOptions="EndAndExpand" AbsoluteLayout.LayoutBounds="1,0.5,50,50" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent" Source="open_gallery.png" Clicked="btnOpenGallery_Clicked"></ImageButton>
-            </AbsoluteLayout>
-            <AbsoluteLayout VerticalOptions="End" HorizontalOptions="EndAndExpand" Padding="15" BackgroundColor="Transparent">               
-                <ImageButton x:Name="btnOpenCamera" VerticalOptions="EndAndExpand" AbsoluteLayout.LayoutBounds="1,0,50,50" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent" Source="camera.png" Clicked="btnOpenCamera_Clicked"></ImageButton>
-            </AbsoluteLayout>
-        </StackLayout>
+        <AbsoluteLayout BackgroundColor="Transparent" Padding="20">
+            <Button x:Name="btnOpenGallery" 
+                         VerticalOptions="EndAndExpand" AbsoluteLayout.LayoutBounds="1,0.85,50,50" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                         BackgroundColor="Transparent" WidthRequest="100" HeightRequest="100" BorderRadius="0"
+                         ImageSource="open_gallery.png" 
+                         Clicked="btnOpenGallery_Clicked"></Button>
+            <Button x:Name="btnOpenCamera" VerticalOptions="EndAndExpand" 
+                    AbsoluteLayout.LayoutBounds="1,1,55,55" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    BackgroundColor="Transparent" WidthRequest="100" HeightRequest="100" BorderRadius="10"
+                    ImageSource="camera.png" Clicked="btnOpenCamera_Clicked"></Button>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

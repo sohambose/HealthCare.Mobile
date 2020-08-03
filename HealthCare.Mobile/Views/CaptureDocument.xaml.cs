@@ -17,59 +17,18 @@ namespace HealthCare.Mobile.Views
         public CaptureDocument()
         {
             InitializeComponent();
-
-            //btnOpenCamera.Clicked += async (sender, args) =>
-            //{
-
-            //};
-
-
         }
 
         private async void btnOpenCamera_Clicked(object sender, EventArgs e)
         {
-            await CrossMedia.Current.Initialize();
-
-            if (CrossMedia.Current.IsTakePhotoSupported)
-            {
-                var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-                {
-                    Directory = "captured_images",
-                    Name = DateTime.Now.ToFileTime().ToString()
-                }); ;
-                if (file != null)
-                {
-                    await DisplayAlert("File Path-", file.Path, "OK");
-                }
-
-                imgCaptured.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    return stream;
-                });
-            }
+            bool IsCameraMode = true;
+            await Navigation.PushAsync(new CaptureAndProcessImage(IsCameraMode));
         }
 
         private async void btnOpenGallery_Clicked(object sender, EventArgs e)
         {
-            await CrossMedia.Current.Initialize();
-            if (CrossMedia.Current.IsPickPhotoSupported)
-            {
-                var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-                {
-                    PhotoSize = PhotoSize.Medium
-                });
-                if (file != null)
-                {
-                    await DisplayAlert("File Path-", file.Path, "OK");
-                }
-
-                imgCaptured.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    return stream;
-                });
-            }
+            bool IsCameraMode = false;
+            await Navigation.PushAsync(new CaptureAndProcessImage(IsCameraMode));
         }
     }
 }
