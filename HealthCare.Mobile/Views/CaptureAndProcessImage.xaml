@@ -6,6 +6,13 @@
              mc:Ignorable="d"
              x:Class="HealthCare.Mobile.Views.CaptureAndProcessImage"
              Padding="5">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Padding="20" Spacing="30">
+            <Entry x:Name="txtDocName" Placeholder="Document Name" PlaceholderColor="Gray" Keyboard="Default"></Entry>
+            <ImageButton x:Name="btnUndo" BackgroundColor="Transparent" Source="undo.png" Clicked="btnUndo_Clicked"></ImageButton>
+            <ImageButton x:Name="btnSave" BackgroundColor="Transparent" Source="save_image.png" Clicked="btnSave_Clicked"></ImageButton>
+        </StackLayout>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <AbsoluteLayout>
             <ActivityIndicator x:Name="spnrProcessingImage" Color="Orange"                                

@@ -1,4 +1,6 @@
-﻿using Plugin.ImageEdit;
+﻿using HealthCare.Mobile.Interfaces;
+using PCLStorage;
+using Plugin.ImageEdit;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -18,6 +20,7 @@ namespace HealthCare.Mobile.Views
     {
         private string _CapturedFile;
         private string _EditFile;
+        private bool IsEdited = false;
 
         public CaptureAndProcessImage(bool IsCameraMode = true)
         {
@@ -42,6 +45,7 @@ namespace HealthCare.Mobile.Views
             //spnrProcessingImage.IsVisible = spnrProcessingImage.IsRunning = false;
 
             File.WriteAllBytes(_EditFile, arrJpeg);
+            IsEdited = true;
         }
 
         private async void btnRotateLeft_Clicked(object sender, EventArgs e)
@@ -57,6 +61,7 @@ namespace HealthCare.Mobile.Views
 
             //spnrProcessingImage.IsVisible = spnrProcessingImage.IsRunning = false;
             File.WriteAllBytes(_EditFile, arrJpeg);
+            IsEdited = true;
         }
 
         private async void btnCrop_Clicked(object sender, EventArgs e)
@@ -74,6 +79,7 @@ namespace HealthCare.Mobile.Views
             });
             //spnrProcessingImage.IsVisible = spnrProcessingImage.IsRunning = false;
             File.WriteAllBytes(_EditFile, jpgBytes);
+            IsEdited = true;
         }
 
         private async void btnGrayscaleConvert_Clicked(object sender, EventArgs e)
@@ -91,6 +97,7 @@ namespace HealthCare.Mobile.Views
             });
             //spnrProcessingImage.IsVisible = spnrProcessingImage.IsRunning = false;
             File.WriteAllBytes(_EditFile, jpgBytes);
+            IsEdited = true;
         }
 
         private async void btnDeleteImage_Clicked(object sender, EventArgs e)
@@ -109,6 +116,51 @@ namespace HealthCare.Mobile.Views
             {
                 await DisplayAlert("Error", ex.Message, "OK");
             }
+        }
+
+        private async void btnUndo_Clicked(object sender, EventArgs e)
+        {
+
+            bool undo_option = await DisplayAlert("Undo Changes", "Revert to Original?", "Yes", "No");
+
+            if (undo_option && IsEdited)
+            {
+
+                Stream ImageFileStream = File.OpenRead(_CapturedFile);
+                var image = await CrossImageEdit.Current.CreateImageAsync(ImageFileStream);
+                var jpgBytes = image.ToJpeg(100);
+
+                imgCaptured.Source = ImageSource.FromStream(() =>   //set display
+                {
+                    return new MemoryStream(jpgBytes); ;
+                });
+
+                File.WriteAllBytes(_EditFile, jpgBytes);
+            }
+        }
+
+        private async void btnSave_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var ServicePlatform = DependencyService.Get<IPathService>();
+                string PublicExternalFolderPath = ServicePlatform.PublicExternalFolder;
+
+                string SaveFolder = Path.Combine(PublicExternalFolderPath, "HealthScans");
+                if (!File.Exists(SaveFolder))
+                    Directory.CreateDirectory(SaveFolder);
+
+                //string SavePath = SaveFolder + "/Saved.jpg";
+                //IFolder rootFolder = FileSystem.Current.RoamingStorage; //FileSystem.Current.LocalStorage; --Internal Storage
+                //IFolder Appfolder = await rootFolder.CreateFolderAsync("HealthCare.Mobile", CreationCollisionOption.OpenIfExists);
+                File.Copy(_EditFile, SaveFolder, true);
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+
         }
 
         public async void HandleCamera()
@@ -146,17 +198,20 @@ namespace HealthCare.Mobile.Views
         {
             if (CrossMedia.Current.IsPickPhotoSupported)
             {
-                var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+                MediaFile capturedImagefile = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
                 {
                     PhotoSize = PhotoSize.Medium
                 });
-                if (file != null)
+                if (capturedImagefile != null)
                 {
-                    await DisplayAlert("File Path-", file.Path, "OK");
+                    await DisplayAlert("File Path-", capturedImagefile.Path, "OK");
+                    _CapturedFile = capturedImagefile.Path;
+                    //-----Copy Captured file for Edit Purpose
+                    _EditFile = Path.Combine(Path.GetDirectoryName(_CapturedFile), "currentedit.jpg");
+                    File.Copy(_CapturedFile, _EditFile, true);
                     imgCaptured.Source = ImageSource.FromStream(() =>
                     {
-                        var stream = file.GetStream();
-                        return stream;
+                        return capturedImagefile.GetStream();
                     });
                 }
                 else
@@ -164,6 +219,31 @@ namespace HealthCare.Mobile.Views
                     await Navigation.PushAsync(new CaptureDocument());
                 }
             }
+
+            //MediaFile capturedImagefile = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+            //{
+            //    AllowCropping = true,
+            //    Directory = "temp",
+            //    Name = DateTime.Now.ToFileTime().ToString()
+            //});
+
+            //if (capturedImagefile != null)  //Photo capture success.....
+            //{
+            //    _CapturedFile = capturedImagefile.Path;   ///storage/emulated/0/Android/data/com.companyname.healthcare.mobile/files/Pictures/temp/132409169326373120.jpg
+
+            //    //-----Copy Captured file for Edit Purpose
+            //    _EditFile = Path.Combine(Path.GetDirectoryName(_CapturedFile), "currentedit.jpg");
+            //    File.Copy(_CapturedFile, _EditFile, true);
+
+
+            //    //--Set Image Source for display
+            //    imgCaptured.Source = ImageSource.FromStream(() =>
+            //    {
+            //        return capturedImagefile.GetStream();
+            //    });
+            //}
+            //else
+            //    await Navigation.PushAsync(new CaptureDocument());  //Photo capture failure- Go to landing page
         }
 
         private async Task<byte[]> RotateImageByDegree(Stream imageStream, int degree)
@@ -174,5 +254,7 @@ namespace HealthCare.Mobile.Views
             var jpgBytes = image.ToJpeg(100);
             return jpgBytes;
         }
+
+
     }
 }
